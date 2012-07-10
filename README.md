@@ -29,8 +29,32 @@ becomes
       pets: [ 'cat', 'dog', 'bat' ],
       match: /pattern/gim,
       run: [Function],
-      __content: 'Some Other Content'
-    }
+      __content: 'Some Other Content' }
+      
+### Install with npm
+
+    $ npm install yaml-front-matter -g
+    # or locally
+    $ npm install yaml-front-matter
+    
+### Command Line
+
+    Usage: js-yaml-front.js [options] <file>
+    # If installed locally you may have to run 
+    # node_modules/yaml-front-matter/js-yaml-front.js [options] <file>
+
+    Options:
+
+    -h, --help            output usage information
+    -V, --version         output the version number
+    -v, --version         displays version number then exits
+    -c, --content [name]  set the property name for the files contents [__content]
+    
+    
+
+
+      
+
 
     
     
