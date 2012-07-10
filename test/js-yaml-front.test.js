@@ -5,7 +5,7 @@ describe('js-yaml-front', function() {
   var jsYaml = require('../lib/js-yaml-front')
     , fs = require('fs')
     , results
-    , testStr = '---post: title\nanArray:\n - one\n - two\nsubObject:\n obj1: cool\n obj2: two';
+    , testStr = '---post: title one\nanArray:\n - one\n - two\nsubObject:\n obj1: cool\n obj2: two';
       testStr += '\nreg: !!js/regexp /pattern/gim';
       testStr += '\nfun: !!js/function function() {  }---\ncontent\nmore';
       
@@ -14,8 +14,7 @@ describe('js-yaml-front', function() {
       });
       
   var test = function() {
-    
-      results.should.have.property('post', 'title');
+      results.should.have.property('post', 'title one');
       results.should.have.property('anArray');
       results.anArray.should.include('one');
       results.anArray.should.include('two');
