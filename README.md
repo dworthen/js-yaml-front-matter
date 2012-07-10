@@ -50,6 +50,9 @@ becomes
     -v, --version         displays version number then exits
     -c, --content [name]  set the property name for the files contents [__content]
     
+### JS-YAML 
+
+Yaml front matter is an extension of the [js-yaml module](https://github.com/nodeca/js-yaml) and therefore supports the same api as js-yaml. In fact, after installing yaml-front-matter, one may use the js-yaml command line interface by running js-yaml. 
     
 
 
