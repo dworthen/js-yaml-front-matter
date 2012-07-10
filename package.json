@@ -4,6 +4,7 @@
   "description": "yaml front matter for JS using the js-yaml module",
   "version": "1.0.1",
   "repository": {
+    "type": "git",
     "url": "https://github.com/dworthen/js-yaml-front-matter"
   },
   "dependencies": {
