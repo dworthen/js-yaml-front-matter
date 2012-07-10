@@ -3,6 +3,9 @@
   "name": "yaml-front-matter",
   "description": "yaml front matter for JS using the js-yaml module",
   "version": "1.0.1",
+  "repository": {
+    "url": "https://github.com/dworthen/js-yaml-front-matter"
+  },
   "dependencies": {
     "js-yaml": "~1.0.1",
     "should": "0.6.3",
