@@ -1,4 +1,4 @@
-# yaml-front-matter
+# Yaml Front Matter
 
 parses yaml at the top of a file, plus the file content into an object literal.
 
@@ -47,7 +47,6 @@ becomes
 
     -h, --help            output usage information
     -V, --version         output the version number
-    -v, --version         displays version number then exits
     -c, --content [name]  set the property name for the files contents [__content]
     
 ## JS-YAML 
@@ -78,6 +77,20 @@ the above will produce the following in the console.
       __content: '\ncontent\nmore' }
       
 Note that the two instances of ---, one at the beginning of input and the other denoting the end of the yaml section, is a requirement for for yaml-front-matter. Any content after the second --- is optional and for this reason, yaml-front-matter can parse any input js-yaml can as long as the input is marked with --- at the beginning and the end.
+
+All of the content after the second --- is grouped under the '__content' key. This behavor can be changed in the command line by passing in an argument to the -c flag. Or
+
+    var yamlFront = require('yaml-front-matter')
+      , input = '---\ntitle: Title\n';
+        input += '---\n';
+        input += 'content\nmore';
+        
+    console.log(yamlFront(input, 'extras'));
+    
+will produce
+
+    { title: Title,
+      extras: '\ncontent\nmore' }
 
 ## Tests
 
