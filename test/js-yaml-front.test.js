@@ -45,7 +45,6 @@ describe('js-yaml-front', function() {
       test();
       results = jsYaml.loadFront(testStr);
       test();
-      console.log(results);
     });
   }); // End describe loadFront
 
