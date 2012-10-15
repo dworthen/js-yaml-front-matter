@@ -2,25 +2,25 @@
   "author": "Derek Worthen",
   "name": "yaml-front-matter",
   "description": "yaml front matter for JS using the js-yaml module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/dworthen/js-yaml-front-matter"
   },
   "dependencies": {
-    "js-yaml": "~1.0.1",
-    "commander": "1.0.0"
+    "commander": "1.0.0",
+    "js-yaml": "~1.0.2"
   },
-  "devDependencies": { 
+  "devDependencies": {
     "should": "0.6.3",
     "mocha": "~1.3.0"
   },
   "engines": {
-    "node": "0.6.x",
+    "node": ">=0.8.x",
     "npm": "1.1.x"
   },
   "bin": {
-    "yaml-front-matter" : "bin/js-yaml-front.js",
+    "yaml-front-matter": "bin/js-yaml-front.js",
     "js-yaml": "node_modules/js-yaml/bin/js-yaml.js"
   }
 }
