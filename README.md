@@ -65,7 +65,7 @@ Yaml front matter is an extension of the [js-yaml](https://github.com/nodeca/js-
         input += '\nfun: !!js/function function() {  }---\n';
         input += 'content\nmore';
         
-    console.log(yamlFront(input));
+    console.log(yamlFront.loadFront(input));
     
 the above will produce the following in the console.
 
@@ -85,7 +85,7 @@ All of the content after the second --- is grouped under the '__content' key. Th
         input += '---\n';
         input += 'content\nmore';
         
-    console.log(yamlFront(input, 'extras'));
+    console.log(yamlFront.loadFront(input, 'extras'));
     
 will produce
 
