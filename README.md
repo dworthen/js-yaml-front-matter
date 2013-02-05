@@ -53,7 +53,7 @@ becomes
 
 Yaml front matter is an extension of the [js-yaml](https://github.com/nodeca/js-yaml) module. Simply put, yaml front matter supports the same api as js-yaml (with some extras) so pay the [js-yaml](https://github.com/nodeca/js-yaml) page a little visit. One can access js-yaml in the command line by running `$ js-yaml` (note this will run the actual js-yaml parser and will not be able to parse input intended for yaml-front-matter).
 
-## API
+## API - v1.0.3
 
 ### loadFront(string|buffer|file, [contentKey])
 
