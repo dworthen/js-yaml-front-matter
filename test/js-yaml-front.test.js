@@ -48,4 +48,11 @@ describe('js-yaml-front', function() {
     });
   }); // End describe loadFront
 
+  describe('incorrect parse', function () {
+    it('should return undefined', function () {
+      results = jsYaml.parse('Hello World');
+      should.not.exist(results);
+    });
+  });
+
 }); // End describe js-yaml-front

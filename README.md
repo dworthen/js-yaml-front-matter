@@ -65,7 +65,12 @@ Yaml front matter is an extension of the [js-yaml](https://github.com/nodeca/js-
         input += '\nfun: !!js/function function() {  }---\n';
         input += 'content\nmore';
         
-    console.log(yamlFront.loadFront(input));
+    var results = yamlFront.loadFront(input);
+    if (results) 
+      console.log(results);
+    else
+      // provided text does not contain yaml.
+
     
 the above will produce the following in the console.
 
@@ -75,6 +80,8 @@ the above will produce the following in the console.
       reg: /pattern/gim,
       fun: [Function],
       __content: '\ncontent\nmore' }
+
+The above method returns `undefined` if the provided text does not contain yaml. 
       
 Note that the two instances of ---, one at the beginning of input and the other denoting the end of the yaml section, is a requirement for for yaml-front-matter. Any content after the second --- is optional and for this reason, yaml-front-matter can parse any input js-yaml can as long as the input is marked with --- at the beginning and the end.
 
