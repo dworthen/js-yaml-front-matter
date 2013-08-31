@@ -30,6 +30,17 @@ becomes
       match: /pattern/gim,
       run: [Function],
       __content: 'Some Other Content' }
+
+May also use JSON
+
+    ---
+    {
+    "name": "Derek Worthen",
+    "age": "young",
+    "anArray": ["one","two"],
+    "subObj":{"field1": "one"}
+    }
+    ---
       
 ## Install with npm
 
@@ -51,9 +62,9 @@ becomes
     
 ## JS-YAML 
 
-Yaml front matter is an extension of the [js-yaml](https://github.com/nodeca/js-yaml) module. Simply put, yaml front matter supports the same api as js-yaml (with some extras) so pay the [js-yaml](https://github.com/nodeca/js-yaml) page a little visit. One can access js-yaml in the command line by running `$ js-yaml` (note this will run the actual js-yaml parser and will not be able to parse input intended for yaml-front-matter).
+Yaml front matter is an extension of the [js-yaml](https://github.com/nodeca/js-yaml) module. Simply put, yaml front matter supports the same api as js-yaml (with some extras) so pay [js-yaml](https://github.com/nodeca/js-yaml) page a visit. You can directly access js-yaml in the command line by running `$ js-yaml` (note this will run the actual js-yaml parser and will not be able to parse input intended for yaml-front-matter).
 
-## API - v1.0.3
+## API - v2.1.0
 
 ### loadFront(string|buffer|file, [contentKey])
 
@@ -66,11 +77,7 @@ Yaml front matter is an extension of the [js-yaml](https://github.com/nodeca/js-
         input += 'content\nmore';
         
     var results = yamlFront.loadFront(input);
-    if (results) 
-      console.log(results);
-    else
-      // provided text does not contain yaml.
-
+    console.log(results);
     
 the above will produce the following in the console.
 
@@ -81,23 +88,38 @@ the above will produce the following in the console.
       fun: [Function],
       __content: '\ncontent\nmore' }
 
-The above method returns `undefined` if the provided text does not contain yaml. 
+The front matter is optional:
+
+    // somefile.ext
+    Hello World!
+
+    // another location
+    var frontMatter = require('yaml-front-matter')
+      , results = frontMatter.loadFront('somefile.ext', 'myContent');
+
+Will produce
+
+    { myContent: "Hello World!" }
+
+Content all together is optional
+
+    frontMatter.loadFront('');
+    // will produce {__content: ''}    
+
+__NOTE:__ This behavior differs from previos versions as previous versions returned `undefined` when the input did not contain yaml front matter.
       
-Note that the two instances of ---, one at the beginning of input and the other denoting the end of the yaml section, is a requirement for for yaml-front-matter. Any content after the second --- is optional and for this reason, yaml-front-matter can parse any input js-yaml can as long as the input is marked with --- at the beginning and the end.
+__NOTE:__ The --- are required to denote the start and end of front matter. There must also be a newline after each ---.
 
-All of the content after the second --- is grouped under the '__content' key. This behavor can be changed in the command line by passing in an argument to the -c flag. Or
+## Changelog v2.1.0
 
-    var yamlFront = require('yaml-front-matter')
-      , input = '---\ntitle: Title\n';
-        input += '---\n';
-        input += 'content\nmore';
-        
-    console.log(yamlFront.loadFront(input, 'extras'));
-    
-will produce
+- Uses js-yaml v2.1.0
+- Now supports parsing JSON front matter.
+- The --- must have a newline after them.
+- Front matter is optional.
 
-    { title: Title,
-      extras: '\ncontent\nmore' }
+## TODO
+
+- Browser testing
 
 ## Tests
 
@@ -108,6 +130,9 @@ To run the tests first install the development dependencies:
 Then run
 
     make test
+    # may have to run 
+    # sudo chmod +x ./node_modules/mocha/bin/mocha
+    # before running make test
     
 ## License
 
