@@ -89,4 +89,12 @@ describe('js-yaml-front', function() {
     });
   }); // End describe loadFront
 
-}); // End describe js-yaml-front
+  describe('extra dashes', function() {
+    it('should fail parsing, if content includes three dashes', function() {
+       results = jsYaml.loadFront('test/fixtures/testExtraDashes.html');
+       test();
+    });
+  });
+
+});// End describe js-yaml-front
+

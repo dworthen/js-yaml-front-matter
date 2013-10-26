@@ -2,7 +2,7 @@
   "author": "Derek Worthen",
   "name": "yaml-front-matter",
   "description": "yaml front matter for JS using the js-yaml module",
-  "version": "2.1.0",
+  "version": "2.1.01",
   "repository": {
     "type": "git",
     "url": "https://github.com/dworthen/js-yaml-front-matter"
