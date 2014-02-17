@@ -60,11 +60,11 @@ May also use JSON
     -V, --version         output the version number
     -c, --content [name]  set the property name for the files contents [__content]
     
-## JS-YAML 
+## JS-YAML - 3.0.1
 
 Yaml front matter is an extension of the [js-yaml](https://github.com/nodeca/js-yaml) module. Simply put, yaml front matter supports the same api as js-yaml (with some extras) so pay [js-yaml](https://github.com/nodeca/js-yaml) page a visit. You can directly access js-yaml in the command line by running `$ js-yaml` (note this will run the actual js-yaml parser and will not be able to parse input intended for yaml-front-matter).
 
-## API - v2.1.0
+## API - v2.2.0
 
 ### loadFront(string|buffer|file, [contentKey])
 
