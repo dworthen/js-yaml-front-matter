@@ -1,6 +1,9 @@
-# Yaml Front Matter
+# Yaml Front Matter - v3.0.0
 
-parses yaml at the top of a file, plus the file content into an object literal.
+parses yaml or json at the front of a file. Places the parsed content plus the rest of the file's content into an object literal.
+
+- Works in the browser as of 3.0.0. 
+- Note that since this module is merely a wrapper for [js-yaml](https://github.com/nodeca/js-yaml) please see the readme for js-yaml about browser support. 
 
 ## Example
 
@@ -47,6 +50,12 @@ May also use JSON
     $ npm install yaml-front-matter -g
     # or locally
     $ npm install yaml-front-matter
+
+## Install with [Component](https://github.com/component/component)
+
+    $ component install dworthen/js-yaml-front-matter
+
+May also grab the `build.js` script from this repo.
     
 ## Command Line
 
@@ -60,11 +69,39 @@ May also use JSON
     -V, --version         output the version number
     -c, --content [name]  set the property name for the files contents [__content]
     
-## JS-YAML - 3.0.1
+## JS-YAML
 
-Yaml front matter is an extension of the [js-yaml](https://github.com/nodeca/js-yaml) module. Simply put, yaml front matter supports the same api as js-yaml (with some extras) so pay [js-yaml](https://github.com/nodeca/js-yaml) page a visit. You can directly access js-yaml in the command line by running `$ js-yaml` (note this will run the actual js-yaml parser and will not be able to parse input intended for yaml-front-matter).
+Yaml front matter is a wrapper to [js-yaml](https://github.com/nodeca/js-yaml). Therefore yaml front matter supports the same api as js-yaml plus a more so pay [js-yaml](https://github.com/nodeca/js-yaml) a visit. You can directly access js-yaml in the command line by running `$ js-yaml` (note this will run the actual js-yaml parser and will not be able to parse input intended for yaml-front-matter).
 
-## API - v2.2.0
+## Browser 
+
+```html
+<script src="js-yaml-for-browser.js"></script><!-- Rquires JS-YAML --->
+<script src="build.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+  // loading and setting up js-yaml-front-matter
+  var jsFront = require('js-yaml-front-matter');
+  jsFront(jsyaml);
+
+  // parse front matter with jsyaml.loadFront(String);
+</script>
+```
+
+View index.html for a full example. To run the example:
+
+```js
+$ npm install --dev
+$ npm start
+```
+
+Then load `localhost:3000` in a web browser.
+
+### Requirements
+
+- The [js-yaml](https://github.com/nodeca/js-yaml) browser script.
+
+## API
 
 ### loadFront(string|buffer|file, [contentKey])
 
@@ -110,16 +147,15 @@ __NOTE:__ This behavior differs from previos versions as previous versions retur
       
 __NOTE:__ The --- are required to denote the start and end of front matter. There must also be a newline after each ---.
 
-## Changelog v2.1.0
+## Changelog 
 
-- Uses js-yaml v2.1.0
 - Now supports parsing JSON front matter.
-- The --- must have a newline after them.
+- There must be a newline after each ---.
 - Front matter is optional.
 
 ## TODO
 
-- Browser testing
+- 
 
 ## Tests
 
@@ -129,7 +165,7 @@ To run the tests first install the development dependencies:
     
 Then run
 
-    make test
+    $ npm test
     # may have to run 
     # sudo chmod +x ./node_modules/mocha/bin/mocha
     # before running make test
