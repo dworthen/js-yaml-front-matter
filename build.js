@@ -1,3 +1,4 @@
+;(function(){
 
 /**
  * Require the given path.
@@ -244,4 +245,10 @@ require.alias("forbeslindesay-is-browser/client.js", "js-yaml-front-matter/deps/
 require.alias("forbeslindesay-is-browser/client.js", "js-yaml-front-matter/deps/is-browser/index.js");
 require.alias("forbeslindesay-is-browser/client.js", "is-browser/index.js");
 require.alias("forbeslindesay-is-browser/client.js", "forbeslindesay-is-browser/index.js");
-require.alias("js-yaml-front-matter/index.js", "js-yaml-front-matter/index.js");
+require.alias("js-yaml-front-matter/index.js", "js-yaml-front-matter/index.js");if (typeof exports == "object") {
+  module.exports = require("js-yaml-front-matter");
+} else if (typeof define == "function" && define.amd) {
+  define([], function(){ return require("js-yaml-front-matter"); });
+} else {
+  this["jsFront"] = require("js-yaml-front-matter");
+}})();
