@@ -55,7 +55,7 @@ May also use JSON
 
     $ component install dworthen/js-yaml-front-matter
 
-May also grab the `build.js` script from this repo. View the [online demo](http://js-yaml-example.com).
+May also grab the `build.js` script from this repo. View the [online demo](http://js-yaml-example.derekworthen.com).
     
 ## Command Line
 
