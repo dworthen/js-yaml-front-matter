@@ -2,7 +2,7 @@
 
 parses yaml or json at the front of a file. Places the parsed content plus the rest of the file's content into an object literal.
 
-- Works in the browser as of 3.0.0. 
+- Works in the browser as of 3.0.0. [Online Demo](http://js-yaml-example.derekworthen.com).
 - Note that since this module is merely a wrapper for [js-yaml](https://github.com/nodeca/js-yaml) please see the readme for js-yaml about browser support. 
 
 ## Example
@@ -55,7 +55,7 @@ May also use JSON
 
     $ component install dworthen/js-yaml-front-matter
 
-May also grab the `build.js` script from this repo.
+May also grab the `build.js` script from this repo. View the [online demo](http://js-yaml-example.com).
     
 ## Command Line
 
