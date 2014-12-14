@@ -3,19 +3,19 @@
 parses yaml or json at the front of a file. Places the parsed content plus the rest of the file's content into an object literal.
 
 - Works in the browser as of 3.0.0. [Online Demo](http://js-yaml-example.derekworthen.com).
-- Note that since this module is merely a wrapper for [js-yaml](https://github.com/nodeca/js-yaml) please see the readme for js-yaml about browser support. 
+- Note that since this module is merely a wrapper for [js-yaml](https://github.com/nodeca/js-yaml) please see the readme for js-yaml about browser support.
 
 ## Example
 
-This 
+This
 
     ---
     name: Derek Worthen
     age: young
-    contact: 
+    contact:
      email: email@domain.com
      address: some location
-    pets: 
+    pets:
      - cat
      - dog
      - bat
@@ -23,7 +23,7 @@ This
     run: !!js/function function() { }
     ---
     Some Other content
-    
+
 becomes
 
     { name: 'Derek Worthen',
@@ -44,7 +44,7 @@ May also use JSON
     "subObj":{"field1": "one"}
     }
     ---
-      
+
 ## Install with npm
 
     $ npm install yaml-front-matter -g
@@ -56,11 +56,11 @@ May also use JSON
     $ component install dworthen/js-yaml-front-matter
 
 May also grab the `build.js` script from this repo. View the [online demo](http://js-yaml-example.derekworthen.com).
-    
+
 ## Command Line
 
     Usage: js-yaml-front.js [options] <file>
-    # If installed locally you may have to run 
+    # If installed locally you may have to run
     # node_modules/yaml-front-matter/js-yaml-front.js [options] <file>
 
     Options:
@@ -68,12 +68,12 @@ May also grab the `build.js` script from this repo. View the [online demo](http:
     -h, --help            output usage information
     -V, --version         output the version number
     -c, --content [name]  set the property name for the files contents [__content]
-    
+
 ## JS-YAML
 
 Yaml front matter is a wrapper to [js-yaml](https://github.com/nodeca/js-yaml). Therefore yaml front matter supports the same api as js-yaml plus a more so pay [js-yaml](https://github.com/nodeca/js-yaml) a visit. You can directly access js-yaml in the command line by running `$ js-yaml` (note this will run the actual js-yaml parser and will not be able to parse input intended for yaml-front-matter).
 
-## Browser 
+## Browser
 
 ```html
 <script src="js-yaml-for-browser.js"></script><!-- Rquires JS-YAML --->
@@ -110,12 +110,12 @@ Then load `localhost:3000` in a web browser.
         input += 'anArray:\n - one\n - two\n';
         input += 'subObject:\n prop1: cool\n prop2: two';
         input += '\nreg: !!js/regexp /pattern/gim';
-        input += '\nfun: !!js/function function() {  }---\n';
+        input += '\nfun: !!js/function function() {  }\n---\n';
         input += 'content\nmore';
-        
+
     var results = yamlFront.loadFront(input);
     console.log(results);
-    
+
 the above will produce the following in the console.
 
     { post: 'title one',
@@ -141,38 +141,38 @@ Will produce
 Content all together is optional
 
     frontMatter.loadFront('');
-    // will produce {__content: ''}    
+    // will produce {__content: ''}
 
 __NOTE:__ This behavior differs from previos versions as previous versions returned `undefined` when the input did not contain yaml front matter.
-      
-__NOTE:__ The --- are required to denote the start and end of front matter. There must also be a newline after each ---.
 
-## Changelog 
+__NOTE:__ The --- are required to denote the start and end of front matter. There must be a newline after the opening --- and a newline preceding the closing ---.
+
+## Changelog
 
 - Now supports parsing JSON front matter.
-- There must be a newline after each ---.
+- A newline must come after the opening --- and precede the closing ---.
 - Front matter is optional.
 
 ## TODO
 
-- 
+-
 
 ## Tests
 
 To run the tests first install the development dependencies:
 
     $ npm install --dev
-    
+
 Then run
 
     $ npm test
-    # may have to run 
+    # may have to run
     # sudo chmod +x ./node_modules/mocha/bin/mocha
     # before running make test
-    
+
 ## License
 
-### 
+###
 
 Copyright (c) 2012 Derek Worthen
 

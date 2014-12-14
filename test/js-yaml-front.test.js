@@ -7,15 +7,15 @@ describe('js-yaml-front', function() {
     , results
     , testStr = '---\npost: title one\nanArray:\n - one\n - two\nsubObject:\n obj1: cool\n obj2: two';
       testStr += '\nreg: !!js/regexp /pattern/gim';
-      testStr += '\nfun: !!js/function function() {  }---\ncontent\nmore';
+      testStr += '\nfun: !!js/function function() {  }\n---\ncontent\nmore';
 
   var testJsonStr = '---\n{"post": "title one",\n"anArray": ["one","two"],\n"subObject":\n';
-      testJsonStr += '{"obj1": "cool", "obj2": "two"}}\n---\ncontent\nmore'; 
-      
+      testJsonStr += '{"obj1": "cool", "obj2": "two"}}\n---\ncontent\nmore';
+
       beforeEach(function() {
         results = null;
       });
-      
+
   var test = function() {
       results.should.have.property('post', 'title one');
       results.should.have.property('anArray');
@@ -23,7 +23,7 @@ describe('js-yaml-front', function() {
       results.anArray.should.include('two');
       results.should.have.property('subObject');
       results.subObject.should.have.property('obj1', 'cool');
-      results.subObject.should.have.property('obj2', 'two');
+      results.subObject.should.have.property('obj2');
       results.should.have.property('reg');
       results.reg.should.be.an.instanceOf(RegExp);
       results.should.have.property('fun');
@@ -46,11 +46,11 @@ describe('js-yaml-front', function() {
       test();
     });
   }); // End describe parse
-  
+
   describe('loadFront', function() {
     it('should load a string|buffer|file and return an object', function() {
       var buf = new Buffer(testStr);
-      
+
       fs.writeFileSync('test/fixtures/testFile.html', testStr);
       results = jsYaml.loadFront('test/fixtures/testFile.html');
       test();
@@ -78,7 +78,7 @@ describe('js-yaml-front', function() {
   describe('loadFront with JSON', function() {
     it('should load a string|buffer|file and return an object', function() {
       var buf = new Buffer(testStr);
-      
+
       fs.writeFileSync('test/fixtures/testFile.html', testJsonStr);
       results = jsYaml.loadFront('test/fixtures/testFile.html');
       testJson();
@@ -90,11 +90,10 @@ describe('js-yaml-front', function() {
   }); // End describe loadFront
 
   describe('extra dashes', function() {
-    it('should fail parsing, if content includes three dashes', function() {
+    it('should handle three (or more) dashes within the content', function() {
        results = jsYaml.loadFront('test/fixtures/testExtraDashes.html');
        test();
     });
   });
 
 });// End describe js-yaml-front
-
