@@ -1,4 +1,4 @@
-# Yaml Front Matter - v3.0.0
+# Yaml Front Matter - v3.2.3
 
 parses yaml or json at the front of a file. Places the parsed content plus the rest of the file's content into an object literal.
 
