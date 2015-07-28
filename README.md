@@ -76,7 +76,7 @@ Yaml front matter is a wrapper to [js-yaml](https://github.com/nodeca/js-yaml). 
 ## Browser
 
 ```html
-<script src="js-yaml-for-browser.js"></script><!-- Rquires JS-YAML --->
+<script src="js-yaml-for-browser.js"></script><!-- Requires JS-YAML -->
 <script src="build.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script>
