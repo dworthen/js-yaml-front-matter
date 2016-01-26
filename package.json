@@ -30,6 +30,6 @@
   },
   "scripts": {
     "test": "mocha -u bdd --reporter spec",
-    "start": "./node_modules/serve/bin/serve ./"
+    "start": "serve ./"
   }
 }

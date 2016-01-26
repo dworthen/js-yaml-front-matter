@@ -167,6 +167,10 @@ Then run
 
     $ npm install mocha -g && npm test
 
+## Run Browser Example
+
+    $ npm install serve -g && npm start
+
 ## License
 
 ###
