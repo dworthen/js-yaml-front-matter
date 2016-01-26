@@ -1,6 +1,6 @@
-# Yaml Front Matter - v3.2.3
+# Yaml Front Matter
 
-parses yaml or json at the front of a file. Places the parsed content plus the rest of the file's content into an object literal.
+Parses yaml or json at the front of a file. Places the parsed content plus the rest of the file's content into an object literal.
 
 - Works in the browser as of 3.0.0. [Online Demo](http://js-yaml-example.derekworthen.com).
 - Note that since this module is merely a wrapper for [js-yaml](https://github.com/nodeca/js-yaml) please see the readme for js-yaml about browser support.
@@ -52,6 +52,8 @@ May also use JSON
     $ npm install yaml-front-matter
 
 ## Install with [Component](https://github.com/component/component)
+
+__DEPRECATED:__ component is no longer maintained. Instead load the browser script. 
 
     $ component install dworthen/js-yaml-front-matter
 
