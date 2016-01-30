@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>parsing example</title>
-  <script src="js-yaml-for-browser.js"></script>
-  <script src="../build.js"></script>
+  <script src="../dist/js-yaml-front-client.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script>
-    // loading and setting up js-yaml-front-matter
-    jsFront(jsyaml);
-
-
+    
+    // to run example run gulp serve in root of project and visit locahost:3000
+    
     var parsed;
     var text = "---\n"
       +"name: Derek Worthen\n"
