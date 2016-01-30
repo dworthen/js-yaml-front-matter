@@ -3,7 +3,7 @@
   "license": "MIT",
   "name": "yaml-front-matter",
   "description": "yaml front matter for JS. Parse yaml or JSON from the beginning of files.",
-  "version": "3.2.3",
+  "version": "3.3.0",
   "keywords": [
     "yaml"
   ],
