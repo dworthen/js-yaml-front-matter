@@ -20,7 +20,7 @@ gulp.task('build', function() {
 gulp.task('serve', ['build'], function() {
   browserSync.init({
     server: {
-      baseDir: "./"
+      baseDir: "./examples"
     }
   });
 });

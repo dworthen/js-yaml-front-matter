@@ -31,6 +31,6 @@
   },
   "scripts": {
     "test": "mocha -u bdd --reporter spec",
-    "start": "serve ./"
+    "start": "gulp serve"
   }
 }
