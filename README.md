@@ -3,7 +3,6 @@
 Parses yaml or json at the front of a file. Places the parsed content plus the rest of the file's content into an object literal.
 
 - Works in the browser as of 3.0.0. [Online Demo](http://js-yaml-example.derekworthen.com).
-- Note that since this module is merely a wrapper for [js-yaml](https://github.com/nodeca/js-yaml) please see the readme for js-yaml about browser support.
 
 ## Example
 
@@ -45,19 +44,44 @@ May also use JSON
     }
     ---
 
+## Running Browser Example
+
+```shell
+$ npm install gulp -g && npm install --dev && npm start
+```
+
+Then visit `localhost:3000`.
+
 ## Install with npm
 
-    $ npm install yaml-front-matter -g
-    # or locally
-    $ npm install yaml-front-matter
+```shell
+$ npm install yaml-front-matter
+```
 
-## Install with [Component](https://github.com/component/component)
+Use the `-g` flag if you plan on using the command line tool.
 
-__DEPRECATED:__ component is no longer maintained. Instead load the browser script. 
+```shell
+$ npm install yaml-front-matter -g
+```
+    
+## Browser
 
-    $ component install dworthen/js-yaml-front-matter
+Include one of the client files from `dist/`. 
 
-May also grab the `build.js` script from this repo. View the [online demo](http://js-yaml-example.derekworthen.com).
+```html
+<script src="js-yaml-front-client.min.js"></script>
+<script>
+  // parse front matter with jsyaml.loadFront(String);
+</script>
+```
+
+## Building Client Script
+
+Outputs client files in `dist/`.
+
+```shell
+$ npm install gulp -g && npm install --dev && gulp build
+```
 
 ## Command Line
 
@@ -73,59 +97,38 @@ May also grab the `build.js` script from this repo. View the [online demo](http:
 
 ## JS-YAML
 
-Yaml front matter is a wrapper to [js-yaml](https://github.com/nodeca/js-yaml). Therefore yaml front matter supports the same api as js-yaml plus a more so pay [js-yaml](https://github.com/nodeca/js-yaml) a visit. You can directly access js-yaml in the command line by running `$ js-yaml` (note this will run the actual js-yaml parser and will not be able to parse input intended for yaml-front-matter).
-
-## Browser
-
-```html
-<script src="js-yaml-for-browser.js"></script><!-- Rquires JS-YAML --->
-<script src="build.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script>
-  // loading and setting up js-yaml-front-matter
-  var jsFront = require('js-yaml-front-matter');
-  jsFront(jsyaml);
-
-  // parse front matter with jsyaml.loadFront(String);
-</script>
-```
-
-View index.html for a full example. To run the example:
-
-```js
-$ npm install --dev
-$ npm start
-```
-
-Then load `localhost:3000` in a web browser.
-
-### Requirements
-
-- The [js-yaml](https://github.com/nodeca/js-yaml) browser script.
+Yaml front matter is a wrapper to [js-yaml](https://github.com/nodeca/js-yaml). Therefore yaml front 
+matter supports the same api as js-yaml plus a more so pay [js-yaml](https://github.com/nodeca/js-yaml) a visit. 
+You can directly access js-yaml in the command line by running `$ js-yaml` (note this will run the actual js-yaml 
+parser and will not be able to parse input intended for yaml-front-matter).
 
 ## API
 
 ### loadFront(string|buffer|file, [contentKey])
 
-    var yamlFront = require('yaml-front-matter')
-      , input = '---\npost: title one\n';
-        input += 'anArray:\n - one\n - two\n';
-        input += 'subObject:\n prop1: cool\n prop2: two';
-        input += '\nreg: !!js/regexp /pattern/gim';
-        input += '\nfun: !!js/function function() {  }\n---\n';
-        input += 'content\nmore';
+```JavaScript
+var yamlFront = require('yaml-front-matter')
+  , input = '---\npost: title one\n';
+    input += 'anArray:\n - one\n - two\n';
+    input += 'subObject:\n prop1: cool\n prop2: two';
+    input += '\nreg: !!js/regexp /pattern/gim';
+    input += '\nfun: !!js/function function() {  }\n---\n';
+    input += 'content\nmore';
 
-    var results = yamlFront.loadFront(input);
-    console.log(results);
+var results = yamlFront.loadFront(input);
+console.log(results);
+```
 
 the above will produce the following in the console.
 
-    { post: 'title one',
-      anArray: [ 'one', 'two' ],
-      subObject: { obj1: 'cool', obj2: 'two' },
-      reg: /pattern/gim,
-      fun: [Function],
-      __content: '\ncontent\nmore' }
+```shell
+{ post: 'title one',
+  anArray: [ 'one', 'two' ],
+  subObject: { obj1: 'cool', obj2: 'two' },
+  reg: /pattern/gim,
+  fun: [Function],
+  __content: '\ncontent\nmore' }
+```
 
 The front matter is optional:
 
@@ -143,7 +146,7 @@ Will produce
 Content all together is optional
 
     frontMatter.loadFront('');
-    // will produce {__content: ''}
+    // will produce { __content: '' }
 
 __NOTE:__ This behavior differs from previos versions as previous versions returned `undefined` when the input did not contain yaml front matter.
 
@@ -154,6 +157,7 @@ __NOTE:__ The --- are required to denote the start and end of front matter. Ther
 - Now supports parsing JSON front matter.
 - A newline must come after the opening --- and precede the closing ---.
 - Front matter is optional.
+- Browser API 
 
 ## TODO
 
@@ -161,14 +165,8 @@ __NOTE:__ The --- are required to denote the start and end of front matter. Ther
 
 ## Tests
 
-To run the tests first install the development dependencies:
-
-    $ npm install --dev
-
 Then run
 
-    $ npm install mocha -g && npm test
-
-## Run Browser Example
-
-    $ npm install serve -g && npm start
+```shell
+$ npm install --dev && npm install mocha -g && npm test
+```
