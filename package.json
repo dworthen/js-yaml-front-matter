@@ -26,8 +26,7 @@
     "should": "0.6.3"
   },
   "bin": {
-    "yaml-front-matter": "bin/js-yaml-front.js",
-    "js-yaml": "node_modules/js-yaml/bin/js-yaml.js"
+    "yaml-front-matter": "bin/js-yaml-front.js"
   },
   "scripts": {
     "test": "mocha -u bdd --reporter spec",
