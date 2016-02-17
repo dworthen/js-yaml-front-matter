@@ -31,7 +31,7 @@ becomes
       pets: [ 'cat', 'dog', 'bat' ],
       match: /pattern/gim,
       run: [Function],
-      __content: 'Some Other Content' }
+      __content: '\nSome Other Content' }
 
 May also use JSON
 
