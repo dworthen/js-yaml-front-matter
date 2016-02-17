@@ -86,8 +86,6 @@ $ npm install gulp -g && npm install --dev && gulp build
 ## Command Line
 
     Usage: js-yaml-front.js [options] <file>
-    # If installed locally you may have to run
-    # node_modules/yaml-front-matter/js-yaml-front.js [options] <file>
 
     Options:
 
