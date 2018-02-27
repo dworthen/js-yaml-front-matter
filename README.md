@@ -8,6 +8,8 @@ Parses yaml or json at the front of a string. Places the parsed content, plus th
 
 This readme is for the 4.x branch which introduces breaking changes. View the [changelog](CHANGELOG.md) for more information.
 
+[3.x readme](https://github.com/dworthen/js-yaml-front-matter/tree/v3.4.0)
+
 ## Example
 
 This
@@ -110,14 +112,17 @@ npm install --dev && npm test
 ## Command Line
 
 ```shell
-Usage: yaml-front-matter [options] <file>
+Usage: yaml-front-matter [options] <yaml-front-matter content>
 
 Options:
 
 -h, --help            output usage information
--V, --version         output the version number
+-v, --version         output the version number
 -c, --content [name]  set the property name for the files contents [__content]
+--pretty              formats json output with spaces. 
 ```
+
+> **Note** The cli uses `safeLoadFront` and therefore the cli cannot parse yaml containing regexps, functions or undefined values.
 
 ## JS-YAML
 
