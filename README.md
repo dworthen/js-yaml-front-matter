@@ -4,6 +4,10 @@ Parses yaml or json at the front of a file. Places the parsed content plus the r
 
 - Works in the browser as of 3.0.0. [Online Demo](http://js-yaml-example.derekworthen.com).
 
+### Breaking Changes
+
+The latest set of updates are being developed on the 4.0.0 branch and will introduce breaking changes.
+
 ## Example
 
 This
