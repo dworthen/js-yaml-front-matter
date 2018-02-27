@@ -1,1 +1,1 @@
-module.exports = require('./dist/commonjs/yamlFront');
+module.exports = require('./dist/yamlFront');

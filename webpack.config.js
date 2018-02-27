@@ -5,10 +5,11 @@ module.exports = function(env) {
     return {
         entry: './src/index.js',
         output: {
-            path: path.resolve(__dirname, isBrowser ? 'dist/browser' : 'dist/commonjs'),
+            path: path.resolve(__dirname, 'dist'),
             filename: 'yamlFront.js',
             library: 'yamlFront',
-            libraryTarget: isBrowser ? 'var' : 'commonjs2'
+            libraryTarget: 'umd',
+            globalObject: 'this'
         },
         externals: {
             'js-yaml': {

@@ -1,4 +1,4 @@
-var jsyaml = require('js-yaml');
+var jsYaml = require('js-yaml');
 
 function parse(text, options, loadSafe) {
     let contentKeyName = options && options.contentKeyName ? options.contentKeyName : '__content';
@@ -12,9 +12,9 @@ function parse(text, options, loadSafe) {
             conf = JSON.parse(yamlOrJson);
         } else {
             if(loadSafe) {
-                conf = jsyaml.safeLoad(yamlOrJson, options);
+                conf = jsYaml.safeLoad(yamlOrJson, options);
             } else {
-                conf = jsyaml.load(yamlOrJson, options); 
+                conf = jsYaml.load(yamlOrJson, options); 
             }
         }
     }
