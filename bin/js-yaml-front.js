@@ -8,6 +8,7 @@ program
     .version(package.version, '-v, --version')
     .usage('[options] <string>')
     .option('-c, --content [name]', 'set the property name for the files contents [__content]')
+    .option('--pretty', 'prints the json output with spaces.')
     .on('--help', function() {
         console.log('');
         console.log('   Examples')
@@ -40,6 +41,8 @@ if (program.args.length > 0) {
 }
 
 function processData(data) {
-    process.stdout.write(JSON.stringify(yamlFront.loadFront(data,
-        { contentKeyName: program.content || '__content' }), undefined, 2));
+    console.log(JSON.stringify(yamlFront.safeLoadFront(data,
+        { contentKeyName: program.content || '__content' }), 
+        undefined, 
+        program.pretty ? 2 : 0));
 }
