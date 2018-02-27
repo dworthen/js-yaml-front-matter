@@ -64,7 +64,7 @@ Some content
 #### npm
 
 ```shell
-$ npm install yaml-front-matter
+$ npm install yaml-front-matter@next
 ```
 
 Use the `-g` flag if you plan on using the command line tool.
