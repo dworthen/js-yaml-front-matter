@@ -39,7 +39,7 @@
   },
   "scripts": {
     "test": "mocha -u bdd --reporter spec",
-    "start": "http-server ./examples -p 8080",
+    "start": "npm run build:browser && http-server ./docs -p 8080",
     "release": "standard-version",
     "build": "webpack --mode production",
     "build:browser": "webpack --mode production --env.browser"

@@ -5,7 +5,7 @@ module.exports = function(env) {
     return {
         entry: './src/index.js',
         output: {
-            path: path.resolve(__dirname, 'dist'),
+            path: path.resolve(__dirname, isBrowser ? 'docs/js' : 'dist'),
             filename: 'yamlFront.js',
             library: 'yamlFront',
             libraryTarget: 'umd',

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>parsing example</title>
+    <script src="https://unpkg.com/js-yaml@3.10.0/dist/js-yaml.js"></script>
+    <script src="js/yamlFront.js"></script>
+    <script src="https://unpkg.com/marked@0.3.17/marked.min.js"></script>
+    <script src="js/handlebars.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+        var parsed;
+        var now = new Date().toDateString();
+        var temp;
+        var data;
+        var renderedHtml;
+        var text = "---\n"
+            + "title: Welcome to JS YAML Front Matter\n"
+            + "author: Derek Worthen\n"
+            + "date: " + now + "\n"
+            + "contact: \n"
+            + " email: email@domain.com\n"
+            + " phone: 012.345.6789\n"
+            + "Co-Authors: \n"
+            + " - me\n"
+            + " - myself\n"
+            + " - and I\n"
+            + "---\n"
+            + ['#### JS & YAML Rendering in the Browser!',
+                'This example uses [js-yaml-front-matter](https://github.com/dworthen/js-yaml-front-matter), ',
+                '[marked](https://github.com/markedjs/marked) and [handlebars.js](http://handlebarsjs.com/) to render the conent above.',
+                'Please see the [source code](https://github.com/dworthen/js-yaml-example.derekworthen.com) to see how this example works.'].join('\n\n');
+
+        $(function () {
+            $('#input').val(text);
+            function run() {
+                data = yamlFront.loadFront($('#input').val());
+                data.__content = marked(data.__content);
+                temp = Handlebars.compile($('#temp').html());
+                renderedHtml = temp(data);
+                $('#output').html(renderedHtml);
+    
+            }
+            $('#input').on('input', run);
+            window.run = run;
+            run();
+        });
+    </script>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <style>
+        .container {
+            margin-top: 25px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 300px;
+        }
+
+        #parse {
+            width: 100%;
+        }
+
+        body {
+            background: #eee;
+        }
+
+        #inset {
+            margin: -20px 0 10px 0;
+            padding: 0 0 0 15px;
+        }
+
+        span {
+            font-size: 12px;
+            font-weight: normal;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="sixteen columns">
+                <textarea id="input"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div id="output" class="sixteen columns">
+            </div>
+        </div>
+        <div class="row">
+            <p>
+                An example demonstrating
+                <a href="https://github.com/dworthen/js-yaml-front-matter" target="_blank">js yaml front matter</a>.
+            </p>
+        </div>
+    </div>
+    <script id="temp" type="text/x-handlebars-template">
+    <h2>{{#if title}}{{title}}{{else}}No Title{{/if}}
+      <span>{{#if author}}{{author}},{{else}}No Author,{{/if}}
+      {{#if Co-Authors}}
+        {{#each Co-Authors}}
+          {{this}},
+        {{/each}}
+        {{else}}
+          No Co-Authors
+        {{/if}}
+         - 
+        {{#if contact}}
+          {{#if contact.email}}{{contact.email}},{{else}}No Email,{{/if}}
+          {{#if contact.phone}}{{contact.phone}}{{else}}No Phone{{/if}}
+        {{else}}
+          No Contact Information
+        {{/if}}
+      </span></h2>
+    <div id="inset">
+      <span>Date: {{#if date}}{{date}}{{else}}No Date{{/if}}</span>
+    </div>
+    <div id="content">
+      {{#if __content}}
+        {{{__content}}}
+      {{else}}
+        No Content
+      {{/if}}
+    </div>
+  </script>
+</body>
+
+</html>
