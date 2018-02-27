@@ -1,8 +1,12 @@
 # Yaml Front Matter
 
-Parses yaml or json at the front of a file. Places the parsed content plus the rest of the file's content into an object literal.
+Parses yaml or json at the front of a string. Places the parsed content, plus the rest of the string content, into an object literal.
 
 - Works in the browser as of 3.0.0. [Online Demo](http://js-yaml-example.derekworthen.com).
+
+#### Breaking Changes
+
+This readme is for the 4.x branch which introduces breaking changes. View the [changelog](CHANGELOG.md) for more information.
 
 ## Example
 
@@ -47,7 +51,7 @@ May also use JSON
 ## Running Browser Example
 
 ```shell
-$ npm install gulp -g && npm install --dev && npm start
+$ npm install --dev && npm start
 ```
 
 Then visit `localhost:3000`.
@@ -66,12 +70,12 @@ $ npm install yaml-front-matter -g
     
 ## Browser
 
-Include one of the client files from `dist/`. 
+Include the client file from `dist/browser`. 
 
 ```html
 <script src="js-yaml-front-client.min.js"></script>
 <script>
-  // parse front matter with jsyaml.loadFront(String);
+  // parse front matter with yamlFront.loadFront(String);
 </script>
 ```
 
@@ -85,7 +89,7 @@ $ npm install gulp -g && npm install --dev && gulp build
 
 ## Command Line
 
-    Usage: js-yaml-front.js [options] <file>
+    Usage: yaml-front-matter [options] <file>
 
     Options:
 

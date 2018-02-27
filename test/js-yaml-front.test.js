@@ -2,7 +2,7 @@ var should = require('should');
 
 describe('js-yaml-front', function() {
 
-  var jsYaml = require('../lib/js-yaml-front')
+  var jsYaml = require('../')
     , fs = require('fs')
     , results
     , testStr = '---\npost: title one\nanArray:\n - one\n - two\nsubObject:\n obj1: cool\n obj2: two';
@@ -40,60 +40,15 @@ describe('js-yaml-front', function() {
       results.subObject.should.have.property('obj2', 'two');
   };
 
-  describe('parse', function() {
-    it('should parse yaml at the front of a file', function() {
-      results = jsYaml.parse(testStr);
-      test();
-    });
-  }); // End describe parse
-
   describe('loadFront', function() {
-    it('should load a string|buffer|file and return an object', function() {
-      var buf = new Buffer(testStr);
-
-      fs.writeFileSync('test/fixtures/testFile.html', testStr);
-      results = jsYaml.loadFront('test/fixtures/testFile.html');
-      test();
-      results = jsYaml.loadFront(buf);
-      test();
+    it('should load a string with optional yaml or json at the beginning and return an object', function() {
       results = jsYaml.loadFront(testStr);
       test();
-    });
-  }); // End describe loadFront
-
-  describe('incorrect parse', function () {
-    it('should return an object with just __content', function () {
-      results = jsYaml.parse('Hello World');
+      results = jsYaml.loadFront(testJsonStr);
+      testJson();
+      results = jsYaml.loadFront('Hello World');
       results.should.have.property('__content', 'Hello World');
     });
-  });
-
-  describe('Parsing Json', function() {
-    it('should parse JSON at the start of the file', function() {
-      results = jsYaml.parse(testJsonStr);
-      testJson();
-    });
-  });
-
-  describe('loadFront with JSON', function() {
-    it('should load a string|buffer|file and return an object', function() {
-      var buf = new Buffer(testStr);
-
-      fs.writeFileSync('test/fixtures/testFile.html', testJsonStr);
-      results = jsYaml.loadFront('test/fixtures/testFile.html');
-      testJson();
-      results = jsYaml.loadFront(buf);
-      testJson();
-      results = jsYaml.loadFront(testStr);
-      testJson();
-    });
   }); // End describe loadFront
-
-  describe('extra dashes', function() {
-    it('should handle three (or more) dashes within the content', function() {
-       results = jsYaml.loadFront('test/fixtures/testExtraDashes.html');
-       test();
-    });
-  });
 
 });// End describe js-yaml-front
