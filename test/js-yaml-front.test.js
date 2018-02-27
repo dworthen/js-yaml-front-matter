@@ -2,7 +2,7 @@ var should = require('should');
 
 describe('js-yaml-front', function() {
 
-  var jsYaml = require('../')
+  var jsYaml = require('../dist/yamlFront')
     , fs = require('fs')
     , results
     , testStr = '---\npost: title one\nanArray:\n - one\n - two\nsubObject:\n obj1: cool\n obj2: two';
