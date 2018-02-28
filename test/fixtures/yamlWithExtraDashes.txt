@@ -1,0 +1,13 @@
+---
+post: title one
+anArray:
+ - one
+ - two
+subObject:
+ obj1: cool
+ obj2: two ---
+reg: !!js/regexp /pattern/gim
+fun: !!js/function function() {  }
+---
+content
+more

@@ -39,7 +39,7 @@
     "yaml-front-matter": "bin/js-yaml-front.js"
   },
   "scripts": {
-    "test": "mocha -u bdd --reporter spec",
+    "test": "npm run build && mocha -u bdd --reporter spec",
     "start": "npm run build:browser && http-server ./docs -p 8080",
     "release": "standard-version",
     "build": "webpack --mode production",
