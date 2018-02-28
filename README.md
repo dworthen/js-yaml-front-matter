@@ -17,7 +17,7 @@ This
 ```yaml
 ---
 name: Derek Worthen
-age: young
+age: 127
 contact:
   email: email@domain.com
   address: some location
@@ -31,12 +31,22 @@ run: !!js/function function() { }
 Some Other content
 ```
 
-becomes
+```js
+var fs = require('fs');
+var yamlFront = require('yaml-front-matter');
+
+fs.readFile('./some/file.txt', 'utf8', function(fileContents) {
+    console.log(yamlFront.loadFront(fileContents));
+});
+
+```
+
+outputs
 
 ```js
 { 
     name: 'Derek Worthen',
-    age: 'young',
+    age: 127,
     contact: { email: 'email@domain.com', address: 'some location' },
     pets: [ 'cat', 'dog', 'bat' ],
     match: /pattern/gim,
@@ -72,22 +82,22 @@ $ npm install yaml-front-matter@next
 Use the `-g` flag if you plan on using the command line tool.
 
 ```shell
-$ npm install yaml-front-matter -g
+$ npm install yaml-front-matter@next -g
 ```
     
-#### Browser
+#### Browser Script
 
 Include the client script from [dist/yamlFront.js](dist/yamlFront.js). The library will be exposed as a global, `yamlFront`. The client script for [js-yaml](https://github.com/nodeca/js-yaml) is also required. May need to load espirma for some use cases. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
 
 ```html
 <script src="https://unpkg.com/js-yaml@3.10.0/dist/js-yaml.js"></script>
-<script src="js-yaml-front-client.min.js"></script>
+<script src="yamlFront.js"></script>
 <script>
   // parse front matter with yamlFront.loadFront(String);
 </script>
 ```
 
-## Running the Browser Example
+## Running Browser Example
 
 ```shell
 $ npm install --dev && npm start
@@ -133,8 +143,7 @@ Yaml front matter wraps [js-yaml](https://github.com/nodeca/js-yaml) to support 
 ### loadFront(string, [options])
 
 ```js
-var yamlFront = require('yaml-front-matter')
-  , input = [
+var input = [
         '---\npost: title one\n',
         'anArray:\n - one\n - two\n',
         'subObject:\n prop1: cool\n prop2: two',
@@ -147,7 +156,7 @@ var results = yamlFront.loadFront(input);
 console.log(results);
 ```
 
-the above will produce the following in the console.
+outputs
 
 ```shell
 { post: 'title one',
@@ -158,34 +167,29 @@ the above will produce the following in the console.
   __content: '\ncontent\nmore' }
 ```
 
-The front-matter is optional.
-
-```
-frontMatter.loadFront('Hello World');
-```
-
-Will produce
+Front-matter is optional.
 
 ```js
-{ __content: "Hello World!" }
+frontMatter.loadFront('Hello World');
+// => { __content: "Hello World!" }
 ```
 
-Content all together is optional
+Content is optional
 
 ```js
 frontMatter.loadFront('');
-// will produce { __content: '' }
+// => { __content: '' }
 ```
 
 ### safeLoadFront(string, [options])
 
-Same api as loadFront except it does not support regexps, functions and undefined. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
+Same api as loadFront except it does not support regexps, functions or undefined. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
 
 ### Options
 
-The options object supports the same options available to [js-yaml](https://github.com/nodeca/js-yaml) except adds support for an additional key.
+The options object supports the same options available to [js-yaml](https://github.com/nodeca/js-yaml) and adds support for an additional key.
 
-- `options.contentKeyName`: Specify the object key where the remaining string content after parsing the yaml front-matter will be stored. defaults to `__content`.
+- `options.contentKeyName`: Specify the object key where to store content not parsed by yaml-front-matter. defaults to `__content`.
 
 ```js
 yamlFront.loadFront('Hello World', {
