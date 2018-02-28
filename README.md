@@ -91,7 +91,7 @@ $ npm install yaml-front-matter@next -g
 var yamlFront = require('yaml-front-matter');
 ```
     
-#### Browser Script
+#### Browser Bundle
 
 The [dist/yamlFront.js](dist/yamlFront.js) client script will expose the yaml-front-matter library as a global, `yamlFront`. The client script for [js-yaml](https://github.com/nodeca/js-yaml) is also required. May need to load espirma for some use cases. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
 
@@ -102,6 +102,8 @@ The [dist/yamlFront.js](dist/yamlFront.js) client script will expose the yaml-fr
   // parse front matter with yamlFront.loadFront(String);
 </script>
 ```
+
+> **Note**: yaml-front-matter is delivered as a umd package so it should work within commonjs, amd and browser (as a global) environments.
 
 ## Running Browser Example
 
