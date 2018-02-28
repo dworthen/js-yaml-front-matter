@@ -1,7 +1,16 @@
 var jsYaml = require('js-yaml');
 
 function parse(text, options, loadSafe) {
-    let contentKeyName = options && options.contentKeyName ? options.contentKeyName : '__content';
+    let contentKeyName = options && typeof options === 'string'
+        ? options
+        : options && options.contentKeyName 
+            ? options.contentKeyName 
+            : '__content';
+
+    let passThroughOptions = options && typeof options === 'object'
+        ? options
+        : undefined;
+
     let re = /^(-{3}(?:\n|\r)([\w\W]+?)(?:\n|\r)-{3})?([\w\W]*)*/
         , results = re.exec(text)
         , conf = {}
@@ -12,9 +21,9 @@ function parse(text, options, loadSafe) {
             conf = JSON.parse(yamlOrJson);
         } else {
             if(loadSafe) {
-                conf = jsYaml.safeLoad(yamlOrJson, options);
+                conf = jsYaml.safeLoad(yamlOrJson, passThroughOptions);
             } else {
-                conf = jsYaml.load(yamlOrJson, options); 
+                conf = jsYaml.load(yamlOrJson, passThroughOptions); 
             }
         }
     }
