@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.0.0-4"></a>
+# [4.0.0-4](https://github.com/dworthen/js-yaml-front-matter/compare/v4.0.0-3...v4.0.0-4) (2018-02-28)
+
+
+### Bug Fixes
+
+* Update API to be backward compatible with 3.x ([4a9aa0e](https://github.com/dworthen/js-yaml-front-matter/commit/4a9aa0e))
+
+
+
 <a name="4.0.0-3"></a>
 # [4.0.0-3](https://github.com/dworthen/js-yaml-front-matter/compare/v4.0.0-2...v4.0.0-3) (2018-02-27)
 
