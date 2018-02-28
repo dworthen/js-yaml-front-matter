@@ -84,10 +84,16 @@ Use the `-g` flag if you plan on using the command line tool.
 ```shell
 $ npm install yaml-front-matter@next -g
 ```
+
+#### Node or client build tool such as webpack
+
+```js
+var yamlFront = require('yaml-front-matter');
+```
     
 #### Browser Script
 
-Include the client script from [dist/yamlFront.js](dist/yamlFront.js). The library will be exposed as a global, `yamlFront`. The client script for [js-yaml](https://github.com/nodeca/js-yaml) is also required. May need to load espirma for some use cases. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
+The [dist/yamlFront.js](dist/yamlFront.js) client script will expose the yaml-front-matter library as a global, `yamlFront`. The client script for [js-yaml](https://github.com/nodeca/js-yaml) is also required. May need to load espirma for some use cases. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
 
 ```html
 <script src="https://unpkg.com/js-yaml@3.10.0/dist/js-yaml.js"></script>
@@ -107,7 +113,7 @@ Then visit `localhost:8080`.
 
 ## Building from source
 
-Outputs client files in `dist/`.
+Outputs build files to `dist/`.
 
 ```shell
 $ npm install --dev && npm run build
@@ -170,14 +176,14 @@ outputs
 Front-matter is optional.
 
 ```js
-frontMatter.loadFront('Hello World');
+yamlFront.loadFront('Hello World');
 // => { __content: "Hello World!" }
 ```
 
 Content is optional
 
 ```js
-frontMatter.loadFront('');
+yamlFront.loadFront('');
 // => { __content: '' }
 ```
 
