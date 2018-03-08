@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/dworthen/js-yaml-front-matter/compare/v4.0.0-4...v4.0.0) (2018-03-08)
+
+
+
 <a name="4.0.0-4"></a>
 # [4.0.0-4](https://github.com/dworthen/js-yaml-front-matter/compare/v4.0.0-3...v4.0.0-4) (2018-02-28)
 
