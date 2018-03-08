@@ -1,99 +1,147 @@
+var fs = require('fs');
+var path = require('path');
+var jsYaml = require('../dist/yamlFront')
 var should = require('should');
 
-describe('js-yaml-front', function() {
+describe('js-yaml-front', function () {
 
-  var jsYaml = require('../lib/js-yaml-front')
-    , fs = require('fs')
-    , results
-    , testStr = '---\npost: title one\nanArray:\n - one\n - two\nsubObject:\n obj1: cool\n obj2: two';
-      testStr += '\nreg: !!js/regexp /pattern/gim';
-      testStr += '\nfun: !!js/function function() {  }\n---\ncontent\nmore';
+    var results = null;
+    var testStr = null;
+    var testStrWithExtraDashes = null;
+    var testJsonStr = null;
+    var testSafeYamlStr = null;
 
-  var testJsonStr = '---\n{"post": "title one",\n"anArray": ["one","two"],\n"subObject":\n';
-      testJsonStr += '{"obj1": "cool", "obj2": "two"}}\n---\ncontent\nmore';
 
-      beforeEach(function() {
+    var simpleYaml = fs.readFileSync(path.resolve(__dirname, './fixtures/yaml.txt'), 'utf8');
+    var yamlWithDashes = fs.readFileSync(path.resolve(__dirname, './fixtures/yamlWithExtraDashes.txt'), 'utf8');
+    var safeYaml = fs.readFileSync(path.resolve(__dirname, './fixtures/safeYaml.txt'), 'utf8');
+
+    var json = fs.readFileSync(path.resolve(__dirname, './fixtures/json.txt'), 'utf8');
+
+    //   var testJsonStr = '---\n{"post": "title one",\n"anArray": ["one","two"],\n"subObject":\n';
+    //       testJsonStr += '{"obj1": "cool", "obj2": "two"}}\n---\ncontent\nmore';
+
+    beforeEach(function () {
         results = null;
-      });
-
-  var test = function() {
-      results.should.have.property('post', 'title one');
-      results.should.have.property('anArray');
-      results.anArray.should.include('one');
-      results.anArray.should.include('two');
-      results.should.have.property('subObject');
-      results.subObject.should.have.property('obj1', 'cool');
-      results.subObject.should.have.property('obj2');
-      results.should.have.property('reg');
-      results.reg.should.be.an.instanceOf(RegExp);
-      results.should.have.property('fun');
-      results.fun.should.be.a('function');
-  };
-
-  var testJson = function() {
-      results.should.have.property('post', 'title one');
-      results.should.have.property('anArray');
-      results.anArray.should.include('one');
-      results.anArray.should.include('two');
-      results.should.have.property('subObject');
-      results.subObject.should.have.property('obj1', 'cool');
-      results.subObject.should.have.property('obj2', 'two');
-  };
-
-  describe('parse', function() {
-    it('should parse yaml at the front of a file', function() {
-      results = jsYaml.parse(testStr);
-      test();
+        testStr = simpleYaml;
+        testStrWithExtraDashes = yamlWithDashes;
+        testJsonStr = json;
+        testSafeYamlStr = safeYaml;
     });
-  }); // End describe parse
 
-  describe('loadFront', function() {
-    it('should load a string|buffer|file and return an object', function() {
-      var buf = new Buffer(testStr);
+    function testSimpleYaml(key) {
+        key = key || '__content';
+        results.should.have.property('post', 'title one');
+        results.should.have.property('anArray');
+        results.anArray.should.include('one');
+        results.anArray.should.include('two');
+        results.should.have.property('subObject');
+        results.subObject.should.have.property('obj1', 'cool');
+        results.subObject.should.have.property('obj2', 'two');
+        results.should.have.property('reg');
+        results.reg.should.be.an.instanceOf(RegExp);
+        results.should.have.property('fun');
+        results.fun.should.be.a('function');
+        results.should.have.property(key);
+        results[key].should.match(/content\r?\nmore/);
+    };
 
-      fs.writeFileSync('test/fixtures/testFile.html', testStr);
-      results = jsYaml.loadFront('test/fixtures/testFile.html');
-      test();
-      results = jsYaml.loadFront(buf);
-      test();
-      results = jsYaml.loadFront(testStr);
-      test();
-    });
-  }); // End describe loadFront
+    function testYamlWithDashes(key) {
+        key = key || '__content';
+        results.subObject.should.have.property('obj2', 'two ---');
+        results.should.have.property(key);
+        results[key].should.match(/content\r?\nmore/);
+    }
 
-  describe('incorrect parse', function () {
-    it('should return an object with just __content', function () {
-      results = jsYaml.parse('Hello World');
-      results.should.have.property('__content', 'Hello World');
-    });
-  });
+    function testSafeYaml(key) {
+        key = key || '__content';
+        results.should.not.have.property('reg');
+        results.should.not.have.property('fun');
+        results.should.have.property(key);
+        results[key].should.match(/content\r?\nmore/);
+    }
 
-  describe('Parsing Json', function() {
-    it('should parse JSON at the start of the file', function() {
-      results = jsYaml.parse(testJsonStr);
-      testJson();
-    });
-  });
+    function testJson(key) {
+        key = key || '__content';
+        results.should.have.property('post', 'title one');
+        results.should.have.property('anArray');
+        results.anArray.should.include('one');
+        results.anArray.should.include('two');
+        results.should.have.property('subObject');
+        results.subObject.should.have.property('obj1', 'cool');
+        results.subObject.should.have.property('obj2', 'two');
+        results.should.have.property(key);
+        results[key].should.match(/content\r?\nmore/);
+    };
 
-  describe('loadFront with JSON', function() {
-    it('should load a string|buffer|file and return an object', function() {
-      var buf = new Buffer(testStr);
+    describe('loadFront', function () {
 
-      fs.writeFileSync('test/fixtures/testFile.html', testJsonStr);
-      results = jsYaml.loadFront('test/fixtures/testFile.html');
-      testJson();
-      results = jsYaml.loadFront(buf);
-      testJson();
-      results = jsYaml.loadFront(testStr);
-      testJson();
-    });
-  }); // End describe loadFront
+        describe('loading yaml', function () {
+            it('should support loading yaml-front-matter', function () {
+                results = jsYaml.loadFront(testStr);
+                testSimpleYaml();
+            });
+        });
 
-  describe('extra dashes', function() {
-    it('should handle three (or more) dashes within the content', function() {
-       results = jsYaml.loadFront('test/fixtures/testExtraDashes.html');
-       test();
-    });
-  });
+        describe('loading yaml with arbitrary dashes', function () {
+            it('should support loading yaml-front-matter with dashes', function () {
+                results = jsYaml.loadFront(testStrWithExtraDashes);
+                testYamlWithDashes();
+            });
+        });
+
+        describe('loading json', function () {
+            it('should support loading json-front-matter', function () {
+                results = jsYaml.loadFront(testJsonStr);
+                testJson();
+            });
+        });
+
+        describe('loading without yaml', function () {
+            it('should support loading files without yaml-front-matter', function () {
+                results = jsYaml.loadFront('Hello World');
+                results.should.have.property('__content', 'Hello World');
+            });
+        });
+
+        describe('loading empty string', function () {
+            it('should support loading no content', function () {
+                results = jsYaml.loadFront('');
+                results.should.have.property('__content', '');
+            });
+        });
+
+        describe('loading with options', function () {
+            it('should support changing content key name through options object', function () {
+                results = jsYaml.loadFront(testStr, { contentKeyName: 'fileContents' });
+                testSimpleYaml('fileContents');
+            });
+        });
+
+        describe('loading with specifying content key name', function () {
+            it('should support changing content key name with a string', function () {
+                results = jsYaml.loadFront(testStr, 'fileContents');
+                testSimpleYaml('fileContents');
+            });
+        });
+
+    }); // End describe loadFront
+
+    describe('safeLoadFront', function () {
+
+        describe('loading safe yaml', function () {
+            it('should support loading yaml-front-matter without RegExp or functions', function () {
+                results = jsYaml.safeLoadFront(testSafeYamlStr);
+                testSafeYaml();
+            });
+        });
+
+        describe('loading yaml', function () {
+            it('should not support loading yaml-front-matter that contain RegExp or functions', function () {
+                jsYaml.safeLoadFront.bind(this, testStr).should.throw();
+            });
+        });
+
+    }); // End describe safeLoadFront
 
 });// End describe js-yaml-front
