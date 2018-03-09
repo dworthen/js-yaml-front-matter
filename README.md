@@ -6,7 +6,7 @@ Parses yaml or json at the front of a string. Places the parsed content, plus th
 
 #### Breaking Changes
 
-This readme is for the 4.x branch which introduces breaking changes. View the [changelog](CHANGELOG.md) for more information.
+This readme is for the 4.x release, which introduces breaking changes. View the [changelog](CHANGELOG.md) for more information.
 
 [3.x readme](https://github.com/dworthen/js-yaml-front-matter/tree/v3.4.0)
 
