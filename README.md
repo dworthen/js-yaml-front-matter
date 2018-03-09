@@ -212,4 +212,3 @@ yamlFront.loadFront('Hello World', {
 });
 // => { fileContents: "Hello World" }
 ```
-
