@@ -76,16 +76,16 @@ Some content
 #### npm
 
 ```shell
-$ npm install yaml-front-matter@next
+$ npm install yaml-front-matter
 ```
 
 Use the `-g` flag if you plan on using the command line tool.
 
 ```shell
-$ npm install yaml-front-matter@next -g
+$ npm install yaml-front-matter -g
 ```
 
-#### Node or client build tool such as webpack
+#### Node or client with module bundler (webpack or browsify)
 
 ```js
 var yamlFront = require('yaml-front-matter');
@@ -140,7 +140,14 @@ Options:
 --pretty              formats json output with spaces. 
 ```
 
-> **Note** The cli uses `safeLoadFront` and therefore the cli cannot parse yaml containing regexps, functions or undefined values.
+> **Note** The cli uses `safeLoadFront` and therefore will not parse yaml containing regexps, functions or undefined values.
+
+### Example
+
+```shell
+# Piping content from one file, through yaml parser and into another file
+cat ./some/file.txt | yaml-front-matter > output.txt
+```
 
 ## JS-YAML
 
