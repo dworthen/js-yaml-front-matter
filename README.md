@@ -73,7 +73,7 @@ Some content
 
 ## Install
 
-#### npm
+### npm
 
 ```shell
 $ npm install yaml-front-matter
@@ -85,13 +85,13 @@ Use the `-g` flag if you plan on using the command line tool.
 $ npm install yaml-front-matter -g
 ```
 
-#### Node or client with module bundler (webpack or browsify)
+### Node or client with module bundler (webpack or browsify)
 
 ```js
 var yamlFront = require('yaml-front-matter');
 ```
     
-#### Browser Bundle
+### Browser Bundle
 
 The [dist/yamlFront.js](dist/yamlFront.js) client script will expose the yaml-front-matter library as a global, `yamlFront`. The client script for [js-yaml](https://github.com/nodeca/js-yaml) is also required. May need to load espirma for some use cases. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
 
