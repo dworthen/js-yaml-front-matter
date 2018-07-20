@@ -35,7 +35,10 @@ Some Other content
 var fs = require('fs');
 var yamlFront = require('yaml-front-matter');
 
-fs.readFile('./some/file.txt', 'utf8', function(fileContents) {
+fs.readFile('./some/file.txt', 'utf8', function(error, fileContents) {
+    if (error) {
+      return console.error(error);
+    }
     console.log(yamlFront.loadFront(fileContents));
 });
 
