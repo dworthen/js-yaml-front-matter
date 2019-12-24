@@ -1,6 +1,15 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [4.1.0](https://github.com/dworthen/js-yaml-front-matter/compare/v4.0.0...v4.1.0) (2019-12-24)
+
+
+### Features
+
+* Upgrade package dependencies ([39a68d2](https://github.com/dworthen/js-yaml-front-matter/commit/39a68d2c10de16b411cccb90865856c8cacbe265))
+
+### [3.4.1](https://github.com/dworthen/js-yaml-front-matter/compare/v4.0.0-2...v3.4.1) (2018-02-27)
 
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/dworthen/js-yaml-front-matter/compare/v4.0.0-4...v4.0.0) (2018-03-08)
