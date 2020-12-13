@@ -16,19 +16,18 @@
     "url": "git+https://github.com/dworthen/js-yaml-front-matter"
   },
   "dependencies": {
-    "commander": "^2.14.1",
-    "js-yaml": "^3.10.0"
+    "commander": "^6.2.0",
+    "js-yaml": "^3.14.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.7",
-    "@babel/preset-env": "^7.7.7",
-    "babel-loader": "^8.0.6",
-    "http-server": "^0.11.1",
-    "mocha": "^6.2.2",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "babel-loader": "^8.2.2",
+    "mocha": "^8.2.1",
     "should": "^13.2.3",
-    "standard-version": "^7.0.1",
-    "webpack": "^4.41.4",
-    "webpack-cli": "^3.3.10"
+    "standard-version": "^9.0.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^4.2.0"
   },
   "bin": {
     "yaml-front-matter": "bin/js-yaml-front.js"
