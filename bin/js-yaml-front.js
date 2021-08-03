@@ -8,6 +8,7 @@ program
     .version(package.version, '-v, --version')
     .usage('[options] <string>')
     .option('-c, --content [name]', 'set the property name for the files contents [__content]')
+    .option('-i, --ignoreContent', 'determines if files contents should be included')
     .option('--pretty', 'prints the json output with spaces.')
     .on('--help', function() {
         console.log('');
@@ -41,8 +42,14 @@ if (program.args.length > 0) {
 }
 
 function processData(data) {
-    console.log(JSON.stringify(yamlFront.safeLoadFront(data,
-        { contentKeyName: program.content || '__content' }), 
-        undefined, 
-        program.pretty ? 2 : 0));
+    console.log(
+      JSON.stringify(
+        yamlFront.safeLoadFront(data, {
+          contentKeyName: program.content || '__content',
+          ignoreContent: program.ignoreContent || false,
+        }),
+        undefined,
+        program.pretty ? 2 : 0
+      )
+    );
 }

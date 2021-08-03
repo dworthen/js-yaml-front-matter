@@ -10,6 +10,10 @@ function parse(text, options, loadSafe) {
     let passThroughOptions = options && typeof options === 'object'
         ? options
         : undefined;
+    
+    const ignoreContent = options && typeof options === 'object'
+        ? options.ignoreContent
+        : false;
 
     let re = /^(-{3}(?:\n|\r)([\w\W]+?)(?:\n|\r)-{3})?([\w\W]*)*/
         , results = re.exec(text)
@@ -28,7 +32,9 @@ function parse(text, options, loadSafe) {
         }
     }
 
-    conf[contentKeyName] = results[3] || '';
+    if (!ignoreContent) {
+        conf[contentKeyName] = results[3] || '';
+    }
 
     return conf;
 };

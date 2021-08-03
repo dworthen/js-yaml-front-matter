@@ -56,6 +56,22 @@ describe("js-yaml-front", function() {
     results[key].should.match(/content\r?\nmore/);
   }
 
+  function testSimpleYamlIgnoreContent(key) {
+    key = key || "__content";
+    results.should.have.property("post", "title one");
+    results.should.have.property("anArray");
+    results.anArray.should.containEql("one");
+    results.anArray.should.containEql("two");
+    results.should.have.property("subObject");
+    results.subObject.should.have.property("obj1", "cool");
+    results.subObject.should.have.property("obj2", "two");
+    results.should.have.property("reg");
+    results.reg.should.be.an.instanceOf(RegExp);
+    results.should.have.property("fun");
+    results.fun.should.Function();
+    results.should.not.have.property(key);
+  }
+
   function testYamlWithDashes(key) {
     key = key || "__content";
     results.subObject.should.have.property("obj2", "two ---");
@@ -89,6 +105,13 @@ describe("js-yaml-front", function() {
       it("should support loading yaml-front-matter", function() {
         results = jsYaml.loadFront(testStr);
         testSimpleYaml();
+      });
+    });
+
+    describe("loading yaml with ignoreContent set to `true`", function() {
+      it("should support loading yaml-front-matter with ignoreContent set to `true`", function() {
+        results = jsYaml.loadFront(testStr, {ignoreContent: true});
+        testSimpleYamlIgnoreContent();
       });
     });
 
