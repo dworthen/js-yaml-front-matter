@@ -137,6 +137,7 @@ Options:
 -h, --help            output usage information
 -v, --version         output the version number
 -c, --content [name]  set the property name for the files contents [__content]
+-i, --ignoreContent   determines if files contents should be included
 --pretty              formats json output with spaces. 
 ```
 
@@ -213,3 +214,11 @@ yamlFront.loadFront('Hello World', {
 // => { fileContents: "Hello World" }
 ```
 
+- `options.ignoreContent`: Specify wether the content parsed by yaml-front-matter should be included in the reurned object. defaults to `false`.
+
+```js
+yamlFront.loadFront('Hello World', {
+    ignoreContent: true 
+});
+// => {}
+```
